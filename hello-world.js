@@ -1,17 +1,20 @@
 var date = new Date()
 
-function getEllapsedMinutes() {
-  return date.getHours() * 60 + date.getMinutes()
+var dateUtil = {
+  getEllapsedMinutes(date) {
+    return date.getHours() * 60 + date.getMinutes()
+  },
+  getTime(date) {
+    return date.getHours() + ':' + date.getMinutes()
+  },
 }
 
 console.log(
   [
     'hello world! ',
-    date.getHours(),
-    ':',
-    date.getMinutes(),
+    dateUtil.getTime(date),
     ' (',
-    getEllapsedMinutes(),
+    dateUtil.getEllapsedMinutes(date),
     'min',
     ')',
   ].join(''),
