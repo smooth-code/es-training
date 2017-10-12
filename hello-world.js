@@ -1,2 +1,18 @@
 var date = new Date()
-console.log(['hello world! ', date.getHours(), ':', date.getMinutes()].join(''))
+
+function getEllapsedMinutes() {
+  return date.getHours() * 60 + date.getMinutes()
+}
+
+console.log(
+  [
+    'hello world! ',
+    date.getHours(),
+    ':',
+    date.getMinutes(),
+    ' (',
+    getEllapsedMinutes(),
+    'min',
+    ')',
+  ].join(''),
+)
