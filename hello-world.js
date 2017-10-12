@@ -7,15 +7,16 @@ var dateUtil = {
   getTime(date) {
     return date.getHours() + ':' + date.getMinutes()
   },
+  help() {
+    console.log('dateUtil')
+    for (var i in dateUtil) {
+      console.log('- ' + i)
+    }
+  },
 }
 
-console.log(
-  [
-    'hello world! ',
-    dateUtil.getTime(date),
-    ' (',
-    dateUtil.getEllapsedMinutes(date),
-    'min',
-    ')',
-  ].join(''),
-)
+Object.defineProperty(dateUtil, 'help', {
+  enumerable: false,
+})
+
+dateUtil.help()
