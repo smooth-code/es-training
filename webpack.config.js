@@ -1,3 +1,4 @@
+/* eslint-env node */
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
