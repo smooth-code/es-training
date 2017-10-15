@@ -1,37 +1,12 @@
-'use strict'
+import validate, {
+  MOVIE_REQUIRED,
+  RATE_REQUIRED,
+  INVALID_RATE,
+  INVALID_BUZZ_WORDS,
+} from './validate'
+import { setElementStyle } from './domUtil'
 
 const rateForm = document.getElementById('rateForm')
-
-const MOVIE_REQUIRED = Symbol('movie-required')
-const RATE_REQUIRED = Symbol('rate-required')
-const INVALID_RATE = Symbol('invalid-rate')
-const INVALID_BUZZ_WORDS = Symbol('invalid-buzz-words')
-
-const ALLOWED_WORDS = ['amazing', 'hilarious', 'sad', 'bad']
-
-function validateBuzzWords(...words) {
-  return words.every(function(word) {
-    return ALLOWED_WORDS.includes(word)
-  })
-}
-
-function isValid({ movie = null, rate = null, buzzWords = [] } = {}) {
-  if (!movie) return MOVIE_REQUIRED
-  if (!rate) return RATE_REQUIRED
-
-  const nbRate = Number(rateForm.rate.value)
-  if (!Number.isInteger(nbRate) || nbRate < 1 || nbRate > 5) return INVALID_RATE
-
-  if (buzzWords.length && !validateBuzzWords(...buzzWords)) {
-    return INVALID_BUZZ_WORDS
-  }
-
-  return null
-}
-
-function setElementStyle(element, styleObj) {
-  Object.assign(element.style, styleObj)
-}
 
 rateForm.addEventListener('submit', function(event) {
   event.preventDefault()
@@ -46,7 +21,7 @@ rateForm.addEventListener('submit', function(event) {
     return word.trim().toLowerCase()
   })
   const alert = rateForm.querySelector('.alert')
-  const invalidReason = isValid({ rate, movie, buzzWords })
+  const invalidReason = validate({ rate, movie, buzzWords })
 
   function getMessage() {
     switch (invalidReason) {
