@@ -1,9 +1,4 @@
-import validate, {
-  MOVIE_REQUIRED,
-  RATE_REQUIRED,
-  INVALID_RATE,
-  INVALID_BUZZ_WORDS,
-} from './validate'
+import MovieReview from './MovieReview'
 import { setElementStyle } from './domUtil'
 
 const rateForm = document.getElementById('rateForm')
@@ -14,25 +9,24 @@ rateForm.addEventListener('submit', event => {
   const {
     rate: { value: rate },
     movie: { value: movie },
-    buzzwords: { value: rawBuzzwords },
+    buzzwords: { value: buzzwords },
   } = rateForm
 
-  const buzzWords = rawBuzzwords
-    .split(',')
-    .map(word => word.trim().toLowerCase())
+  const review = new MovieReview({ rate, movie, buzzwords })
+
   const alert = rateForm.querySelector('.alert')
-  const invalidReason = validate({ rate, movie, buzzWords })
+  const invalidReason = review.validate()
 
   function getMessage() {
     switch (invalidReason) {
-      case MOVIE_REQUIRED:
+      case MovieReview.MOVIE_REQUIRED:
         return `Movie required.`
-      case RATE_REQUIRED:
+      case MovieReview.RATE_REQUIRED:
         return `Rate required.`
-      case INVALID_RATE:
+      case MovieReview.INVALID_RATE:
         return `Invalid rate ${rate}.`
-      case INVALID_BUZZ_WORDS:
-        return `Invalid buzz word ${buzzWords.join(', ')}`
+      case MovieReview.INVALID_BUZZ_WORDS:
+        return `Invalid buzz word ${buzzwords}`
     }
 
     return `The movie ${movie} has been rated ${rate}!`
