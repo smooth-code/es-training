@@ -8,7 +8,7 @@ import { setElementStyle } from './domUtil'
 
 const rateForm = document.getElementById('rateForm')
 
-rateForm.addEventListener('submit', function(event) {
+rateForm.addEventListener('submit', event => {
   event.preventDefault()
 
   const {
@@ -17,9 +17,9 @@ rateForm.addEventListener('submit', function(event) {
     buzzwords: { value: rawBuzzwords },
   } = rateForm
 
-  const buzzWords = rawBuzzwords.split(',').map(function(word) {
-    return word.trim().toLowerCase()
-  })
+  const buzzWords = rawBuzzwords
+    .split(',')
+    .map(word => word.trim().toLowerCase())
   const alert = rateForm.querySelector('.alert')
   const invalidReason = validate({ rate, movie, buzzWords })
 

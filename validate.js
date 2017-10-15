@@ -5,11 +5,8 @@ export const INVALID_BUZZ_WORDS = Symbol('invalid-buzz-words')
 
 const ALLOWED_WORDS = ['amazing', 'hilarious', 'sad', 'bad']
 
-function validateBuzzWords(...words) {
-  return words.every(function(word) {
-    return ALLOWED_WORDS.includes(word)
-  })
-}
+const validateBuzzWords = (...words) =>
+  words.every(word => ALLOWED_WORDS.includes(word))
 
 function validate({ movie = null, rate = null, buzzWords = [] } = {}) {
   if (!movie) return MOVIE_REQUIRED
