@@ -6,9 +6,9 @@ const MOVIE_REQUIRED = Symbol('movie-required')
 const RATE_REQUIRED = Symbol('rate-required')
 const INVALID_RATE = Symbol('invalid-rate')
 
-function isValid(options) {
-  if (!options.movie) return MOVIE_REQUIRED
-  if (!options.rate) return RATE_REQUIRED
+function isValid({ movie = null, rate = null } = {}) {
+  if (!movie) return MOVIE_REQUIRED
+  if (!rate) return RATE_REQUIRED
 
   const nbRate = Number(rateForm.rate.value)
   if (!Number.isInteger(nbRate) || nbRate < 1 || nbRate > 5) return INVALID_RATE
@@ -19,8 +19,7 @@ function isValid(options) {
 rateForm.addEventListener('submit', function(event) {
   event.preventDefault()
 
-  const rate = rateForm.rate.value
-  const movie = rateForm.movie.value
+  const { rate: { value: rate }, movie: { value: movie } } = rateForm
 
   const alert = rateForm.querySelector('.alert')
 
