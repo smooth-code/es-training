@@ -39,6 +39,8 @@ rateForm.addEventListener('submit', event => {
     ? getMessage(invalidReason)
     : `The movie ${movie} has been rated ${rate}!`
 
+  setTimeout(() => setElementStyle(alert, { display: 'none' }), 2000)
+
   if (movie.startsWith('007')) {
     new Audio(
       'http://mobile.twilight3g.com/mp3tones/rtones/new/tv-movie/preview/bond_007_original-4821.mp3',
