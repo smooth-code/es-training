@@ -1,11 +1,11 @@
 'use strict'
 
-var rateForm = document.getElementById('rateForm')
+const rateForm = document.getElementById('rateForm')
 
 rateForm.addEventListener('submit', function(event) {
   event.preventDefault()
 
-  var rate = Number(rateForm.rate.value)
+  const rate = Number(rateForm.rate.value)
 
   if (Number.isInteger(rate) && rate >= 1 && rate <= 5) {
     alert('OK')
@@ -13,7 +13,7 @@ rateForm.addEventListener('submit', function(event) {
     alert('NOK')
   }
 
-  var movie = rateForm.movie.value
+  const movie = rateForm.movie.value
 
   if (movie.startsWith('007')) {
     new Audio(
