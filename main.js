@@ -2,20 +2,49 @@
 
 const rateForm = document.getElementById('rateForm')
 
+const MOVIE_REQUIRED = Symbol('movie-required')
+const RATE_REQUIRED = Symbol('rate-required')
+const INVALID_RATE = Symbol('invalid-rate')
+
+function isValid(options) {
+  if (!options.movie) return MOVIE_REQUIRED
+  if (!options.rate) return RATE_REQUIRED
+
+  const nbRate = Number(rateForm.rate.value)
+  if (!Number.isInteger(nbRate) || nbRate < 1 || nbRate > 5) return INVALID_RATE
+
+  return null
+}
+
 rateForm.addEventListener('submit', function(event) {
   event.preventDefault()
 
-  const rate = Number(rateForm.rate.value)
-  const alert = rateForm.querySelector('.alert')
+  const rate = rateForm.rate.value
   const movie = rateForm.movie.value
-  const valid = Number.isInteger(rate) && rate >= 1 && rate <= 5
+
+  const alert = rateForm.querySelector('.alert')
+
+  const invalidReason = isValid({ rate: rate, movie: movie })
+
+  function getMessage() {
+    switch (invalidReason) {
+      case MOVIE_REQUIRED:
+        return `Movie required.`
+      case RATE_REQUIRED:
+        return `Rate required.`
+      case INVALID_RATE:
+        return `Invalid rate ${rate}.`
+    }
+
+    return `The movie ${movie} has been rated ${rate}!`
+  }
 
   alert.style.display = 'block'
-  alert.classList.toggle('alert-danger', !valid)
-  alert.classList.toggle('alert-success', valid)
-  alert.innerHTML = valid
-    ? `The movie ${movie} has been rated ${rate}!`
-    : `Invalid rate ${rate}.`
+  alert.classList.toggle('alert-danger', invalidReason)
+  alert.classList.toggle('alert-success', !invalidReason)
+  alert.innerHTML = invalidReason
+    ? getMessage(invalidReason)
+    : `The movie ${movie} has been rated ${rate}!`
 
   if (movie.startsWith('007')) {
     new Audio(
