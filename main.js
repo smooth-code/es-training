@@ -1,52 +1,15 @@
 'use strict'
 
-var date = new Date()
+var rateForm = document.getElementById('rateForm')
 
-var dateUtil = {
-  getEllapsedMinutes(date) {
-    return date.getHours() * 60 + date.getMinutes()
-  },
-  getTime(date) {
-    return date.getHours() + ':' + date.getMinutes()
-  },
-  help() {
-    console.log('dateUtil')
-    for (var i in dateUtil) {
-      console.log('- ' + i)
-    }
-  },
-}
+rateForm.addEventListener('submit', function(event) {
+  event.preventDefault()
 
-Object.defineProperty(dateUtil, 'help', {
-  enumerable: false,
+  var rate = Number(rateForm.rate.value)
+
+  if (Number.isInteger(rate) && rate >= 1 && rate <= 5) {
+    alert('OK')
+  } else {
+    alert('NOK')
+  }
 })
-
-function Hello(name) {
-  this.name = name
-}
-
-Hello.prototype.say = function say() {
-  return 'hello ' + this.name + '!'
-}
-
-function HelloDate() {
-  Hello.apply(this, arguments)
-}
-
-HelloDate.prototype = Object.create(Hello.prototype)
-HelloDate.prototype.constructor = HelloDate
-
-HelloDate.prototype.say = function say() {
-  var result = Hello.prototype.say.call(this)
-  return (
-    result +
-    ' ' +
-    dateUtil.getTime(date) +
-    ' (' +
-    dateUtil.getEllapsedMinutes(date) +
-    ' min)'
-  )
-}
-
-const helloDate = new HelloDate('world')
-console.log(helloDate.say())
