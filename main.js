@@ -16,6 +16,10 @@ function isValid({ movie = null, rate = null } = {}) {
   return null
 }
 
+function setElementStyle(element, styleObj) {
+  Object.assign(element.style, styleObj)
+}
+
 rateForm.addEventListener('submit', function(event) {
   event.preventDefault()
 
@@ -23,7 +27,7 @@ rateForm.addEventListener('submit', function(event) {
 
   const alert = rateForm.querySelector('.alert')
 
-  const invalidReason = isValid({ rate: rate, movie: movie })
+  const invalidReason = isValid({ rate, movie })
 
   function getMessage() {
     switch (invalidReason) {
@@ -38,7 +42,7 @@ rateForm.addEventListener('submit', function(event) {
     return `The movie ${movie} has been rated ${rate}!`
   }
 
-  alert.style.display = 'block'
+  setElementStyle(alert, { display: 'block' })
   alert.classList.toggle('alert-danger', invalidReason)
   alert.classList.toggle('alert-success', !invalidReason)
   alert.innerHTML = invalidReason
@@ -52,6 +56,6 @@ rateForm.addEventListener('submit', function(event) {
   }
 
   if (movie.toLowerCase().includes('dark')) {
-    document.body.style.backgroundColor = 'black'
+    setElementStyle(document.body, { backgroundColor: 'black' })
   }
 })
