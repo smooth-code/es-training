@@ -3,11 +3,16 @@ import { setElementStyle } from './domUtil'
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
 
-fetch('/header.html')
-  .then(res => res.text())
-  .then(text => {
-    document.querySelector('header').innerHTML = text
-  })
+async function loadHeader() {
+  const res = await fetch('/header.html')
+  const text = await res.text()
+  const header = document.querySelector('header')
+  header.innerHTML = text
+  await delay(2000)
+  header.classList.add('bigHeader')
+}
+
+loadHeader()
 
 const rateForm = document.getElementById('rateForm')
 
