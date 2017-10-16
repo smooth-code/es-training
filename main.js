@@ -1,17 +1,9 @@
 import MovieReview from './MovieReview'
+import ReviewList from './ReviewList'
 import { setElementStyle } from './domUtil'
 
-const MOVIE_ALREADY_EXIST = Symbol('already-exist')
-const reviews = []
+const reviews = new ReviewList()
 const reviewsContainer = document.querySelector('#reviews')
-
-function validateMovieExistence(review) {
-  if (reviews.some(({ raw: { movie } }) => movie === review.raw.movie)) {
-    return MOVIE_ALREADY_EXIST
-  }
-
-  return null
-}
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
 
@@ -40,7 +32,7 @@ rateForm.addEventListener('submit', event => {
   const review = new MovieReview({ rate, movie, buzzwords })
 
   const alert = rateForm.querySelector('.alert')
-  const invalidReason = review.validate() || validateMovieExistence(review)
+  const invalidReason = reviews.add(review)
 
   function getMessage() {
     switch (invalidReason) {
@@ -52,7 +44,7 @@ rateForm.addEventListener('submit', event => {
         return `Invalid rate ${rate}.`
       case MovieReview.INVALID_BUZZ_WORDS:
         return `Invalid buzz word ${buzzwords}`
-      case MOVIE_ALREADY_EXIST:
+      case MovieReview.MOVIE_ALREADY_EXIST:
         return 'Movie already exists'
     }
 
@@ -72,11 +64,9 @@ rateForm.addEventListener('submit', event => {
   )
 
   if (!invalidReason) {
-    reviews.push(review)
-
     reviewsContainer.innerHTML = ''
 
-    for (let review of reviews.values()) {
+    for (let review of reviews) {
       console.log(String(review))
       const reviewDiv = document.createElement('div')
       reviewDiv.innerHTML = String(review)
