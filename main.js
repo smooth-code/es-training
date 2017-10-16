@@ -1,6 +1,14 @@
 import MovieReview from './MovieReview'
 import { setElementStyle } from './domUtil'
 
+const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
+
+fetch('/header.html')
+  .then(res => res.text())
+  .then(text => {
+    document.querySelector('header').innerHTML = text
+  })
+
 const rateForm = document.getElementById('rateForm')
 
 rateForm.addEventListener('submit', event => {
@@ -39,7 +47,7 @@ rateForm.addEventListener('submit', event => {
     ? getMessage(invalidReason)
     : `The movie ${movie} has been rated ${rate}!`
 
-  setTimeout(() => setElementStyle(alert, { display: 'none' }), 2000)
+  delay(2000).then(() => setElementStyle(alert, { display: 'none' }))
 
   if (movie.startsWith('007')) {
     new Audio(
