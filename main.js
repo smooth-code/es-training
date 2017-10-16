@@ -3,7 +3,15 @@ import ReviewList from './ReviewList'
 import { setElementStyle } from './domUtil'
 
 const reviews = new ReviewList()
+const elementReviews = new WeakMap()
 const reviewsContainer = document.querySelector('#reviews')
+const buzzWordsContainer = document.querySelector('#buzzwords-example')
+
+function getReviewForElement(element) {
+  return elementReviews.get(element)
+}
+
+window.getReviewForElement = getReviewForElement
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
 
@@ -59,6 +67,9 @@ rateForm.addEventListener('submit', event => {
     ? getMessage(invalidReason)
     : `The movie ${movie} has been rated ${rate}!`
 
+  // Display buzz words
+  buzzWordsContainer.innerHTML = [...reviews.getBuzzWords()].join(', ')
+
   Array.from(document.querySelectorAll('.form-control')).forEach(formGroup =>
     formGroup.classList[invalidReason ? 'add' : 'remove']('is-invalid'),
   )
@@ -71,6 +82,7 @@ rateForm.addEventListener('submit', event => {
       const reviewDiv = document.createElement('div')
       reviewDiv.innerHTML = String(review)
       reviewsContainer.appendChild(reviewDiv)
+      elementReviews.set(reviewDiv, review)
     }
   }
 

@@ -4,6 +4,13 @@ export default class MovieReview extends Review {
   static MOVIE_REQUIRED = Symbol('movie-required')
   static INVALID_BUZZ_WORDS = Symbol('invalid-buzz-words')
 
+  getBuzzWords() {
+    return this.raw.buzzwords
+      .split(',')
+      .map(word => word.trim().toLowerCase())
+      .filter(word => word)
+  }
+
   validate() {
     const invalidReason = super.validate()
 
@@ -11,7 +18,7 @@ export default class MovieReview extends Review {
 
     if (!this.raw.movie) return this.constructor.MOVIE_REQUIRED
 
-    if (!areBuzzWordsValid(this.raw.buzzwords))
+    if (!areBuzzWordsValid(this.getBuzzWords()))
       return this.constructor.INVALID_BUZZ_WORDS
 
     return null
@@ -26,9 +33,5 @@ export default class MovieReview extends Review {
 const ALLOWED_BUZZ_WORDS = ['amazing', 'hilarious', 'sad', 'bad']
 
 function areBuzzWordsValid(buzzWords) {
-  return buzzWords
-    .split(',')
-    .map(word => word.trim().toLowerCase())
-    .filter(word => word)
-    .every(word => ALLOWED_BUZZ_WORDS.some(w => w === word))
+  return buzzWords.every(word => ALLOWED_BUZZ_WORDS.some(w => w === word))
 }

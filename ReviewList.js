@@ -19,6 +19,15 @@ class ReviewList {
     return null
   }
 
+  getBuzzWords() {
+    return new Set(
+      this.reviews.reduce(
+        (buzzwords, review) => [...buzzwords, ...review.getBuzzWords()],
+        [],
+      ),
+    )
+  }
+
   *[Symbol.iterator]() {
     yield* this.reviews
   }
