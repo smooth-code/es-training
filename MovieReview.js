@@ -16,6 +16,11 @@ export default class MovieReview extends Review {
 
     return null
   }
+
+  toString() {
+    return `Movie ${this.raw.movie}, rated ${this.raw.rate}, buzz ${this.raw
+      .buzzwords}`
+  }
 }
 
 const ALLOWED_BUZZ_WORDS = ['amazing', 'hilarious', 'sad', 'bad']

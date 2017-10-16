@@ -3,6 +3,7 @@ import { setElementStyle } from './domUtil'
 
 const MOVIE_ALREADY_EXIST = Symbol('already-exist')
 const reviews = []
+const reviewsContainer = document.querySelector('#reviews')
 
 function validateMovieExistence(review) {
   if (reviews.some(({ raw: { movie } }) => movie === review.raw.movie)) {
@@ -72,6 +73,15 @@ rateForm.addEventListener('submit', event => {
 
   if (!invalidReason) {
     reviews.push(review)
+
+    reviewsContainer.innerHTML = ''
+
+    for (let review of reviews.values()) {
+      console.log(String(review))
+      const reviewDiv = document.createElement('div')
+      reviewDiv.innerHTML = String(review)
+      reviewsContainer.appendChild(reviewDiv)
+    }
   }
 
   delay(2000).then(() => setElementStyle(alert, { display: 'none' }))
