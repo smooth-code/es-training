@@ -33,4 +33,25 @@ class ReviewList {
   }
 }
 
+const sanitizeMovieTitle = title => title.replace(/ /g, '').toLowerCase()
+
+ReviewList.prototype = new Proxy(ReviewList.prototype, {
+  get(target, propKey, receiver) {
+    if (!propKey || !propKey.match) return Reflect.get.apply(null, arguments)
+
+    const matches = propKey.match(/^get(.+)BuzzWords$/)
+
+    if (!matches) return Reflect.get.apply(null, arguments)
+
+    let [, movie] = matches
+    return () =>
+      receiver.reviews
+        .filter(
+          review =>
+            sanitizeMovieTitle(review.raw.movie) === sanitizeMovieTitle(movie),
+        )
+        .reduce((words, review) => [...words, ...review.getBuzzWords()], [])
+  },
+})
+
 export default ReviewList

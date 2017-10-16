@@ -11,6 +11,7 @@ function getReviewForElement(element) {
   return elementReviews.get(element)
 }
 
+window.reviews = reviews
 window.getReviewForElement = getReviewForElement
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
