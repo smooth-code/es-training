@@ -86,3 +86,22 @@ rateForm.addEventListener('submit', event => {
     setElementStyle(document.body, { backgroundColor: 'black' })
   }
 })
+
+// co example
+function co(genFunc) {
+  const genObj = genFunc()
+  const run = previousValue => {
+    const { value, done } = genObj.next(previousValue)
+    if (!done) run(value)
+  }
+
+  run()
+}
+
+function sayHello() {
+  return 'hello world!'
+}
+
+co(function*() {
+  console.log(yield sayHello())
+})
