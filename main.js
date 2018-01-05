@@ -1,6 +1,8 @@
 function showReview(title, rate) {
   let qualifier
-  if (rate === 5) {
+  if (typeof rate !== 'number') {
+    qualifier = 'invalid note'
+  } else if (rate === 5) {
     qualifier = 'amazing'
   } else if (rate <= 4 && rate >= 3) {
     qualifier = 'good'
@@ -11,6 +13,5 @@ function showReview(title, rate) {
   return console.log(title + ' - ' + qualifier)
 }
 
-showReview('The return of Jedi', 5)
-showReview('XxX', 2)
 showReview('Coco', 4)
+showReview('Matrix', '5')
