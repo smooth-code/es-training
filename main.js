@@ -1,14 +1,28 @@
 /* eslint-disable no-console */
+import 'babel-polyfill'
 import { appendObjectToContainer } from './domUtils'
 import Review, { getInvalidKeyWords } from './Review'
 
 const delay = time => new Promise(resolve => setTimeout(resolve, time))
 
-fetch('/header.html')
-  .then(res => res.text())
-  .then(html => {
-    document.querySelector('header').innerHTML = html
-  })
+const header = document.querySelector('header')
+
+async function showHeader() {
+  const res = await fetch('/header.html')
+  const html = await res.text()
+  header.innerHTML = html
+
+  await delay(100)
+  header.style.opacity = 0
+  await delay(100)
+  header.style.opacity = 1
+  await delay(100)
+  header.style.opacity = 0
+  await delay(100)
+  header.style.opacity = 1
+}
+
+showHeader()
 
 const rateForm = document.querySelector('#rateForm')
 const reviews = document.querySelector('#reviews')

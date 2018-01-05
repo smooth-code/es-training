@@ -22,5 +22,8 @@
     "dev": "webpack-dev-server",
     "format": "prettier --write \"**/*.js\"",
     "lint": "eslint ."
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
   }
 }
