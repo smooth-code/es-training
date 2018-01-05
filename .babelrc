@@ -6,7 +6,8 @@
         "targets": {
           "browsers": ["last 2 versions"],
           "node": "6"
-        }
+        },
+        "modules": false
       }
     ]
   ]
