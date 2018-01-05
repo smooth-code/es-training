@@ -1,12 +1,12 @@
 import { toDomElement } from './domUtils'
 
-function Review({ title, rate, keywords = [] }) {
-  this.title = title
-  this.rate = rate
-  this.keywords = keywords
-}
+class Review {
+  constructor({ title, rate, keywords = [] }) {
+    this.title = title
+    this.rate = rate
+    this.keywords = keywords
+  }
 
-Review.prototype = {
   toString() {
     let qualifier
     if (typeof this.rate !== 'number') {
@@ -20,13 +20,13 @@ Review.prototype = {
     }
 
     return `${this.title} - ${qualifier} [${this.keywords.join(', ')}]`
-  },
+  }
 
   [toDomElement]() {
     const div = document.createElement('div')
     div.innerHTML = String(this)
     return div
-  },
+  }
 }
 
 const BLACKLIST = ['shit']
