@@ -21,6 +21,9 @@ rateForm.addEventListener('submit', event => {
     : `Invalid keywords: ${invalidKeyWords.join(', ')}`
 
   if (isValid) {
+    setTimeout(() => {
+      alert.style.display = 'none'
+    }, 2000)
     const review = new Review({ rate, title, keywords })
     appendObjectToContainer(review, reviews)
   }
