@@ -2,5 +2,12 @@
   "name": "es-training-exercises",
   "version": "1.0.0",
   "private": true,
-  "repository": "git@github.com:smooth-code/es-training.git"
+  "repository": "git@github.com:smooth-code/es-training.git",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
+  "scripts": {
+    "build": "babel main.js -d lib"
+  }
 }
