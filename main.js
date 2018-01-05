@@ -1,17 +1,19 @@
-function showReview(title, rate) {
+function showReview(review) {
   let qualifier
-  if (typeof rate !== 'number') {
+  if (typeof review.rate !== 'number') {
     qualifier = 'invalid note'
-  } else if (rate === 5) {
+  } else if (review.rate === 5) {
     qualifier = 'amazing'
-  } else if (rate <= 4 && rate >= 3) {
+  } else if (review.rate <= 4 && review.rate >= 3) {
     qualifier = 'good'
   } else {
     qualifier = 'bad'
   }
 
-  return console.log(title + ' - ' + qualifier)
+  return console.log(review.title + ' - ' + qualifier)
 }
 
-showReview('Coco', 4)
-showReview('Matrix', '5')
+const title = 'The return of Jedi'
+const rate = 5
+
+showReview({ title, rate })
