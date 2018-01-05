@@ -1,6 +1,9 @@
-const review = {
-  title: 'The return of Jedi',
-  rate: 5,
+function Review(review) {
+  this.title = review.title
+  this.rate = review.rate
+}
+
+Review.prototype = {
   toString() {
     let qualifier
     if (typeof this.rate !== 'number') {
@@ -17,5 +20,15 @@ const review = {
   },
 }
 
-console.log(String(review))
-console.log(review.toString.call({ title: 'XxX', rate: 2 }))
+const theReturnOfJediReview = new Review({
+  title: 'The return of Jedi',
+  rate: 5,
+})
+
+const cocoReview = new Review({
+  title: 'Coco',
+  rate: 4,
+})
+
+console.log(String(theReturnOfJediReview))
+console.log(String(cocoReview))
