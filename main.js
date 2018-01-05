@@ -2,6 +2,14 @@
 import { appendObjectToContainer } from './domUtils'
 import Review, { getInvalidKeyWords } from './Review'
 
+const delay = time => new Promise(resolve => setTimeout(resolve, time))
+
+fetch('/header.html')
+  .then(res => res.text())
+  .then(html => {
+    document.querySelector('header').innerHTML = html
+  })
+
 const rateForm = document.querySelector('#rateForm')
 const reviews = document.querySelector('#reviews')
 const alert = document.querySelector('.alert')
@@ -21,9 +29,9 @@ rateForm.addEventListener('submit', event => {
     : `Invalid keywords: ${invalidKeyWords.join(', ')}`
 
   if (isValid) {
-    setTimeout(() => {
+    delay(2000).then(() => {
       alert.style.display = 'none'
-    }, 2000)
+    })
     const review = new Review({ rate, title, keywords })
     appendObjectToContainer(review, reviews)
   }
