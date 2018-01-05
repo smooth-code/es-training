@@ -6,6 +6,11 @@ function appendObjectToContainer(object, container) {
   container.appendChild(element)
 }
 
+const BLACKLIST = ['shit']
+function getInvalidKeyWords(...keywords) {
+  return keywords.filter(keyword => BLACKLIST.includes(keyword))
+}
+
 function Review({ title, rate, keywords = [] }) {
   this.title = title
   this.rate = rate
@@ -37,12 +42,24 @@ Review.prototype = {
 
 const rateForm = document.querySelector('#rateForm')
 const reviews = document.querySelector('#reviews')
+const alert = document.querySelector('.alert')
 
 rateForm.addEventListener('submit', event => {
   event.preventDefault()
   const rate = Number(rateForm.rate.value)
   const title = rateForm.title.value
   const keywords = rateForm.keywords.value.split(',').map(k => k.trim())
-  const review = new Review({ rate, title, keywords })
-  appendObjectToContainer(review, reviews)
+  const invalidKeyWords = getInvalidKeyWords(...keywords)
+  const isValid = invalidKeyWords.length === 0
+  alert.style.display = 'block'
+  alert.classList.toggle('alert-danger', !isValid)
+  alert.classList.toggle('alert-success', isValid)
+  alert.innerHTML = isValid
+    ? 'Review added'
+    : `Invalid keywords: ${invalidKeyWords.join(', ')}`
+
+  if (isValid) {
+    const review = new Review({ rate, title, keywords })
+    appendObjectToContainer(review, reviews)
+  }
 })
