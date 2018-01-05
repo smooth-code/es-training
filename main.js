@@ -20,15 +20,27 @@ Review.prototype = {
   },
 }
 
-const theReturnOfJediReview = new Review({
-  title: 'The return of Jedi',
-  rate: 5,
-})
+const reviews = [
+  new Review({ title: 'The Phantom Menace', rate: 5 }),
+  new Review({ title: 'Attack of the Clones', rate: 3 }),
+  new Review({ title: 'Revenge of the Sith', rate: 4 }),
+  new Review({ title: 'A new Hope', rate: 4 }),
+  new Review({ title: 'The empire Strikes Back', rate: 3 }),
+  new Review({ title: 'The return of the Jedi', rate: 5 }),
+  new Review({ title: 'The Force Awakens', rate: 5 }),
+  new Review({ title: 'The Last Jedi', rate: 4 }),
+]
 
-const cocoReview = new Review({
-  title: 'Coco',
-  rate: 4,
-})
+const showMovies = (reviews, options) =>
+  console.log(
+    reviews
+      .filter(review => review.rate === options.rate)
+      .map(review => review.title)
+      .join(', '),
+  )
 
-console.log(String(theReturnOfJediReview))
-console.log(String(cocoReview))
+console.log('Movies rated 5:')
+showMovies(reviews, { rate: 5 })
+
+console.log('Movies rated 3:')
+showMovies(reviews, { rate: 3 })
