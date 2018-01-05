@@ -6,9 +6,10 @@ function appendObjectToContainer(object, container) {
   container.appendChild(element)
 }
 
-function Review(review) {
-  this.title = review.title
-  this.rate = review.rate
+function Review({ title, rate, keywords = [] }) {
+  this.title = title
+  this.rate = rate
+  this.keywords = keywords
 }
 
 Review.prototype = {
@@ -24,7 +25,7 @@ Review.prototype = {
       qualifier = 'bad'
     }
 
-    return `${this.title} - ${qualifier}`
+    return `${this.title} - ${qualifier} [${this.keywords.join(', ')}]`
   },
 
   [toDomElement]() {
@@ -41,6 +42,7 @@ rateForm.addEventListener('submit', event => {
   event.preventDefault()
   const rate = Number(rateForm.rate.value)
   const title = rateForm.title.value
-  const review = new Review({ rate, title })
+  const keywords = rateForm.keywords.value.split(',').map(k => k.trim())
+  const review = new Review({ rate, title, keywords })
   appendObjectToContainer(review, reviews)
 })
