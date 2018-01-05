@@ -1,19 +1,21 @@
-function showReview(review) {
-  let qualifier
-  if (typeof review.rate !== 'number') {
-    qualifier = 'invalid note'
-  } else if (review.rate === 5) {
-    qualifier = 'amazing'
-  } else if (review.rate <= 4 && review.rate >= 3) {
-    qualifier = 'good'
-  } else {
-    qualifier = 'bad'
-  }
+const review = {
+  title: 'The return of Jedi',
+  rate: 5,
+  toString() {
+    let qualifier
+    if (typeof this.rate !== 'number') {
+      qualifier = 'invalid note'
+    } else if (this.rate === 5) {
+      qualifier = 'amazing'
+    } else if (this.rate <= 4 && this.rate >= 3) {
+      qualifier = 'good'
+    } else {
+      qualifier = 'bad'
+    }
 
-  return console.log(review.title + ' - ' + qualifier)
+    return this.title + ' - ' + qualifier
+  },
 }
 
-const title = 'The return of Jedi'
-const rate = 5
-
-showReview({ title, rate })
+console.log(String(review))
+console.log(review.toString.call({ title: 'XxX', rate: 2 }))
