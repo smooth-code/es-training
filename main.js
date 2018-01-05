@@ -17,7 +17,7 @@ Review.prototype = {
       qualifier = 'bad'
     }
 
-    return this.title + ' - ' + qualifier
+    return `${this.title} - ${qualifier}`
   },
 }
 
