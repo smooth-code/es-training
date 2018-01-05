@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 function Review(review) {
   this.title = review.title
   this.rate = review.rate
