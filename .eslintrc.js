@@ -6,5 +6,7 @@ module.exports = {
   },
   rules: {
     'no-shadow': 'off',
+    'no-plusplus': 'off',
+    'no-restricted-syntax': 'off',
   },
 }

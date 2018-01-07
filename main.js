@@ -2,6 +2,7 @@
 import 'babel-polyfill'
 import { appendObjectToContainer } from './domUtils'
 import Review, { getInvalidKeyWords } from './Review'
+import Reviews from './Reviews'
 
 const delay = time => new Promise(resolve => setTimeout(resolve, time))
 
@@ -25,8 +26,17 @@ async function showHeader() {
 showHeader()
 
 const rateForm = document.querySelector('#rateForm')
-const reviews = document.querySelector('#reviews')
+const reviewsContainer = document.querySelector('#reviews')
 const alert = document.querySelector('.alert')
+
+const reviews = new Reviews()
+
+function renderReviews() {
+  reviewsContainer.innerHTML = ''
+  for (const review of reviews) {
+    appendObjectToContainer(review, reviewsContainer)
+  }
+}
 
 rateForm.addEventListener('submit', event => {
   event.preventDefault()
@@ -47,6 +57,7 @@ rateForm.addEventListener('submit', event => {
       alert.style.display = 'none'
     })
     const review = new Review({ rate, title, keywords })
-    appendObjectToContainer(review, reviews)
+    reviews.add(review)
+    renderReviews()
   }
 })
