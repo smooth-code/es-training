@@ -2,7 +2,7 @@
 
 * [Exo 1 - Hello world](ex-1-hello-world.md)
 * [Exo 2 - Variables](ex-2-variables.md)
-* [Exo 3 - Primitives](ex-3-prettier.md)
+* [Exo 3 - Primitives](ex-3-primitives.md)
 * [Exo 4 - Objets](ex-4-objects.md)
 * [Exo 5 - Fonctions](ex-5-functions.md)
 * [Exo 6 - Prototypes](ex-6-prototypes.md)
