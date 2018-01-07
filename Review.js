@@ -4,7 +4,7 @@ class Review {
   constructor({ title, rate, keywords = [] }) {
     this.title = title
     this.rate = rate
-    this.keywords = keywords
+    this.keywords = new Set(keywords)
   }
 
   toString() {
@@ -19,7 +19,7 @@ class Review {
       qualifier = 'bad'
     }
 
-    return `${this.title} - ${qualifier} [${this.keywords.join(', ')}]`
+    return `${this.title} - ${qualifier} [${[...this.keywords].join(', ')}]`
   }
 
   [toDomElement]() {
