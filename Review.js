@@ -29,6 +29,26 @@ class Review {
   }
 }
 
+Review.prototype = new Proxy(Review.prototype, {
+  get(target, propKey, receiver) {
+    if (!propKey || !propKey.match) {
+      return Reflect.get(target, propKey, receiver)
+    }
+
+    const matches = propKey.match(/^has(.+)Keyword/)
+
+    if (!matches) {
+      return Reflect.get(target, propKey, receiver)
+    }
+
+    const [, matchingKeyword] = matches
+    return () =>
+      [...receiver.keywords].some(
+        keyword => keyword.toLowerCase() === matchingKeyword.toLowerCase(),
+      )
+  },
+})
+
 const BLACKLIST = ['shit']
 export function getInvalidKeyWords(...keywords) {
   return keywords.filter(keyword => BLACKLIST.includes(keyword))
