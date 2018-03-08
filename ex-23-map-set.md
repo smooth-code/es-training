@@ -9,7 +9,7 @@ Nous souhaitons nous assurer que les keywords soient uniques.
 **Résultat attendu**
 
 ```
---> J'ajoute une revue avec deux mots clefs similaire
+--> J'ajoute une revue avec deux mots clefs similaires
 --> Le mot clef n'apparaît qu'une seule fois
 ```
 
