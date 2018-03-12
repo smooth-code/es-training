@@ -2,7 +2,7 @@
 
 ## Instructions
 
-Nous souhaitons pouvoir ajouter des mots clefs à nos reviews.
+Nous souhaitons pouvoir ajouter des mots clefs à nos revues.
 
 * Modifier le constructeur de `Review` afin d'accepter une option `keywords`, sa valeur par défaut sera un tableau vide
 * Modifier la méthode `toString` pour afficher le titre, l'adjectif et tous les mots clefs séparés par une virgule

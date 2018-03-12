@@ -6,7 +6,7 @@ Nous souhaitons rendre notre application un peu plus funky et faire clignoter no
 
 * Installer `babel-polyfill`
 * Importer `babel-polyfill` dans `main.js`
-* Créer une méthode asynchrone `showHeader()` qui affichera le header et le fera clignoter 3 fois avec 100ms d'interval
+* Créer une méthode asynchrone `showHeader()` qui affichera le header et le fera clignoter 3 fois avec 100ms d'intervalle
 
 **Résultat attendu**
 

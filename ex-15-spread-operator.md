@@ -4,7 +4,7 @@
 
 Nous souhaitons valider les mots clefs afin de vérifier qu'ils ne font pas partie d'une blacklist.
 
-* Compléter et ajouter la méthode `getInvalidKeyWords()`, elle retournera un tableau contenant les mots clefs invalides
+* Ajouter et compléter la méthode `getInvalidKeyWords()`, elle retournera un tableau contenant les mots clefs invalides
 
 ```js
 const BLACKLIST = ['shit']

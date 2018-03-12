@@ -24,14 +24,14 @@ Nous souhaitons stocker nos revues dans une liste pour pouvoir les afficher plus
 ## Exemple d'utilisation de la classe
 
 ```js
-// Création de la liste de reviews
+// Création de la liste de revue
 const reviews = new Reviews()
 
-// Ajout d'une review
+// Ajout d'une revue
 const review = new Review({ title: 'The return of Jedi', rate: 5 })
 reviews.add(review)
 
-// Liste de toutes les reviews
+// Liste de toutes les revues
 for (const rev of reviews) {
   console.log(String(rev))
 }

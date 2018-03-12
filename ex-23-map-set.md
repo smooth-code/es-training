@@ -36,7 +36,7 @@ objectByElement.get($('#reviews > div'))
 ```js
 const array = []
 
-// Création d'un Set à partir d'un Array
+// Création d'un Set à partir d'un tableau
 const set = new Set(array)
 
 // Création d'un tableau à partir d'un Set
