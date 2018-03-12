@@ -5,7 +5,7 @@
 Afin de nous aider lors du développement et de détecter les erreurs au plus tôt nous allons ajouter ESLint au projet.
 
 * Installer `eslint`, `babel-eslint`, `eslint-config-airbnb-base`, `eslint-plugin-import`, `eslint-config-prettier`
-* Créer un fichier `.eslintrc.js` avec la configuration suviante :
+* Créer un fichier `.eslintrc.js` avec la configuration suivante :
 
 ```js
 // .eslintrc.js

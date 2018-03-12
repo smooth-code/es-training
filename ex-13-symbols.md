@@ -42,12 +42,12 @@ Notre projet fonctionne dans le navigateur, pour être un peu plus user-friendly
 ```
 
 * Relancer la commande `npm run dev`, le formulaire doit s'afficher
-* Modifier notre code pour ajouter une review via le formulaire
+* Modifier notre code pour ajouter une revue via le formulaire
 
   * Écouter l'événement "submit" sur le formulaire
   * Récupérer le titre et la note
   * Créer une instance de "Review" avec ce titre et cette note
-  * Appeler la méthode `review.show()`
+  * Afficher la revue dans la console `console.log(String(review))`
 
 **Résultat attendu**
 
@@ -58,10 +58,10 @@ Notre projet fonctionne dans le navigateur, pour être un peu plus user-friendly
 
 ---
 
-Nous souhaitons maintenant afficher la review dans la page. Pour cela nous disposons d'une méthode générique permettant d'ajouter n'importe quel objet dans un container.
+Nous souhaitons maintenant afficher la revue dans la page. Pour cela nous disposons d'une méthode générique permettant d'ajouter n'importe quel objet dans un noeud DOM.
 
 ```js
-const toDomElement = symbol('toDomElement')
+const toDomElement = Symbol('toDomElement')
 function appendObjectToContainer(object, container) {
   const element = object[toDomElement]()
   container.appendChild(element)
@@ -69,7 +69,7 @@ function appendObjectToContainer(object, container) {
 ```
 
 * Implémenter le symbole `toDomElement` sur le prototype de `Review`
-* Appeler la fonction `appendObjectToContainer(review, document.querySelector('#reviews'))` lors de l'ajout d'une review
+* Appeler la fonction `appendObjectToContainer(review, document.querySelector('#reviews'))` lors de l'ajout d'une revue
 
 **Resultat attendu**
 
@@ -83,7 +83,7 @@ function appendObjectToContainer(object, container) {
 ### Spécifier un template à HtmlWebpackPlugin
 
 ```js
-new HtmlWebpackPlugin({ template: './index.html ' })
+new HtmlWebpackPlugin({ template: './index.html' })
 ```
 
 ### Interagir avec un formulaire HTML

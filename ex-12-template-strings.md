@@ -2,7 +2,7 @@
 
 ## Instructions
 
-La règle ESLint `prefer-template` nous force à utiliser les template strings pour faire de la concaténation. Nous allons donc remplacer toutes les concaténation par des template strings.
+La règle ESLint `prefer-template` nous force à utiliser les template strings pour faire de la concaténation. Nous allons donc remplacer toutes les concaténations par des template strings.
 
 * Remplacer toutes les concaténations par des template strings
 * Lancer la commande `npm run lint`

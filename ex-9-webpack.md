@@ -4,7 +4,7 @@
 
 Nous souhaitons faire fonctionner notre projet sur le web. Pour cela nous allons le bundler avec Webpack.
 
-* Installer `webpack`, `webpack-dev-server`, `html-webpack-plugin` et `babel-loader`
+* Installer `webpack`, `webpack-cli`, `webpack-dev-server`, `html-webpack-plugin` et `babel-loader`
 * Créer un fichier `webpack.config.js` avec la configuration suivante :
 
 ```js
