@@ -7,7 +7,7 @@
 
 ## Démarrer les exercices
 
-Ouvrez un terminal, placez vous dans le dossier choisit et tapez les commandes suivantes :
+Ouvrez un terminal, placez vous dans le dossier choisi et tapez les commandes suivantes :
 
 ```
 npm install --global smooth-code-cli
